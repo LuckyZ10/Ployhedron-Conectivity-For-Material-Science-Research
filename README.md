@@ -1,25 +1,29 @@
 # Ployhedron-Conectivity-For-Material-Science-Research
-本脚本针对给定的·POSCAR·文件来进行多面体结构信息的提取,具备的主要功能：
-1. 多面体间的连接情况分析
-   * 获取中心胞和整体胞的原子位置init()进行后续操作
-   * 自动获取指定多面体mainPoly的顶点坐标并返回相应的多面体信息[dict] 
+This script extracts polyhedron structure information for a given POSCAR file. It has the following main functions:
+1. Analysis of the connection between polyhedrons
+   * Get the atomic positions of the central cell and the whole cell init () for subsequent operations
+   * Automatically obtain the vertex coordinates of the specified polyhedron mainPoly and return the corresponding polyhedron information [dict]
      getMainPolyhedrons(main_element, NN_element, NN_element_number='auto') 
      [main_element = 'Fe',NN_element = 'O']
-   * 自动获取mainPoly周边指定的多面体环境envirPloy[dict] getEnvirPolyhedrons(envirPloy) 
+   * Automatically obtain the specified polyhedral environment around mainPoly. envirPloy[dict] getEnvirPolyhedrons(envirPloy) 
       [envirPloy=[['Ni', 'O', 'auto'], ['Fe', 'O', 'auto']]]
-   * 统计单个多面体间的连接情况[numpy] getMatrixVEF_singleAndSingle(singlePloyA, singlePloyB) 
+   * Statistics of the connection between individual polyhedrons. [numpy] getMatrixVEF_singleAndSingle(singlePloyA, singlePloyB) 
       singlePloy = [[Fe_x,Fe_y,Fe_z,O1_x,O1_y,O1_z],...,[Fe_x,Fe_y,Fe_z,On_x,On_y,On_z]]
-   * 统计某种多面体与对应中间元素的多面体群之间的连接情况[dict] 
+   * Statistics on the connection between a certain polyhedron and the polyhedral group corresponding to the intermediate element. [dict] 
       getMatrixVEF_singleAndElement(singlePloy, elementPloy)
-   * 统计主多面体与环境多面体之间的连接情况[dict] getMatrixVEF_mainAndEnvir(mainPloy, envirPloy)
-   * 混合整理主多面体与所有环境多面体的真实连接情况[dict] getMergeMatrixVEF(MatrixVEF, merge='ME')
-2. 后处理功能
-   * 计算多面体的体积 calPolyVolumes(poly)
-   * 计算原胞的体积 calCellVolume()
-   * 计算主多面体共面的情况[dict] calCommonFace(MatrixVEF)
-   * 计算主多面体共边的情况[dict] calCommonEdge(MatrixVEF)
-   * 计算主多面体共顶的复杂情况[vertex_dict, half_vertex_dict] calCommonVertex(MatrixVEF, envirPloy)
-3. 数据分析
-  * 统计连接方式[dict] statisticsConnection(face,edge,vertex,halfVertex) 默认输出统计矩阵mainPloy+'_SC'命名
-  * 共包括9种连接方式:|共面|共线|纯共顶(两个多面体)|三共顶|四共顶|半共顶(两个多面体共边)|二体连接+一个单体连接|连接一个共体|连接的真空层数|
+   * Statistics on the connection between the main polyhedron and the environmental polyhedron. [dict] getMatrixVEF_mainAndEnvir(mainPloy, envirPloy)
+   * Mixedly sort out the real connection situation of the main polyhedron and all environmental polyhedrons. [dict] getMergeMatrixVEF(MatrixVEF, merge='ME')
+2. Post-processing function
+   * Calculate the volume of a polyhedron. calPolyVolumes(poly)
+   * Calculate the volume of the primitive cell. calCellVolume()
+   * Calculate the coplanar situation of the main polyhedron. [dict] calCommonFace(MatrixVEF)
+   * Calculate the situation of common edges of the main polyhedron. [dict] calCommonEdge(MatrixVEF)
+   * Calculate the complex situation of copoints of the main polyhedron. [vertex_dict, half_vertex_dict] calCommonVertex(MatrixVEF, envirPloy)
+3. Data analytics
+  * Count connection methods. [dict] statisticsConnection(face,edge,vertex,halfVertex) Default output statistical matrix mainPloy + '_SC' naming
+  * A total of 9 connection methods are included: | Coplanar | Collinear | Pure cotopical (two polyhedra) | Tricotopical | Tetracotopical | Semicomponent (two polyhedra co-edge) | Disomeric connection + one monomer connection | Connect a community | Number of vacuum layers connected |
 
+**Please cite the following paper if using the program:**
+[Evaluating thermal expansion in fluorides and oxides: Machine learning predictions with connectivity descriptors](https://iopscience.iop.org/article/10.1088/1674-1056/accdca/meta)
+
+ 
